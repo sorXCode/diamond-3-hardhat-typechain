@@ -1,17 +1,19 @@
 # Diamond-3-Hardhat Implementation + Typechain Support
 
-This is a simple example implementation for [EIP-2535 Diamond Standard](https://github.com/ethereum/EIPs/issues/2535). To learn about other implementations go here: https://github.com/mudgen/diamond
+This is a simple example implementation for [EIP-2535 Diamond Standard](https://github.com/ethereum/EIPs/issues/2535). To learn about other implementations go here: <https://github.com/mudgen/diamond>
 
 The standard loupe functions have been gas-optimized in this implementation and can be called in on-chain transactions. However keep in mind that a diamond can have any number of functions and facets so it is still possible to get out-of-gas errors when calling loupe functions. Except for the `facetAddress` loupe function which has a fixed gas cost.
 
 ## Installation
 
 1. Clone this repo:
+
 ```console
 git clone https://github.com/Timidan/diamond-3-hardhat.git
 ```
 
 2. Install NPM packages:
+
 ```console
 cd diamond-3-hardhat
 npm install or yarn install
@@ -23,7 +25,14 @@ npm install or yarn install
 npx hardhat run scripts/deploy.ts
 ```
 
-## Run tests:
+To provide a network `e.g localhost` to run this deployment at run:
+
+```console
+npx hardhat run scripts/deploy.ts  --network localhost
+```
+
+## Run tests
+
 ```console
 npx hardhat test
 ```
@@ -35,6 +44,8 @@ Check the `scripts/deploy.ts` and or the `test/diamondTest.ts` file for examples
 Note that upgrade functionality is optional. It is possible to deploy a diamond that can't be upgraded, which is a 'Single Cut Diamond'.  It is also possible to deploy an upgradeable diamond and at a later date remove its `diamondCut` function so it can't be upgraded any more.
 
 Note that any number of functions from any number of facets can be added/replaced/removed on a diamond in a single transaction. In addition an initialization function can be executed in the same transaction as an upgrade to initialize any state variables required for an upgrade. This 'everything done in a single transaction' capability ensures a diamond maintains a correct and consistent state during upgrades.
+
+PS: Remember to always specify the network to be used for run command `e.g --network localhost`
 
 ## Facet Information
 
@@ -74,7 +85,6 @@ Here is an example that uses ethers.js:
 let myUsefulFacet = await ethers.getContract(facetName,diamondDeployedAddress) as facetNameType;
 ```
 
-
 ```solidity
 string result = MyUsefulFacet(address(diamondContract)).getResult()
 ```
@@ -84,6 +94,7 @@ string result = MyUsefulFacet(address(diamondContract)).getResult()
 If you need help or would like to discuss diamonds then send me a message [on twitter](https://twitter.com/mudgen), or [email me](mailto:nick@perfectabstractions.com). Or join the [EIP-2535 Diamonds Discord server](https://discord.gg/kQewPw2).
 
 ## Useful Links
+
 1. [Introduction to the Diamond Standard, EIP-2535 Diamonds](https://eip2535diamonds.substack.com/p/introduction-to-the-diamond-standard)
 1. [EIP-2535 Diamonds](https://github.com/ethereum/EIPs/issues/2535)
 1. [Understanding Diamonds on Ethereum](https://dev.to/mudgen/understanding-diamonds-on-ethereum-1fb)
@@ -98,11 +109,10 @@ This example implementation was written by Nick Mudge.
 
 Contact:
 
-- https://twitter.com/mudgen
+- <https://twitter.com/mudgen>
 - nick@perfectabstractions.com
 
 ## License
 
 MIT license. See the license file.
 Anyone can use or modify this software for their purposes.
-
